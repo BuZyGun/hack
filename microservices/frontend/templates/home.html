@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block container %}
+<div class="container-fluid">
+    <div class="row h-100">
+        <div class="col-2 border-end pe-0">
+            <ul class="nav nav-pills flex-column pt-4" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a href="/">
+                        <button class="nav-link w-100 rounded-0 active" id="pills-home-tab" type="button"
+                            aria-selected="true">Сертификаты</button>
+                    </a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a href="/hosts">
+                        <button class="nav-link w-100 rounded-0" id="pills-hosts-tab" type="button"
+                            aria-selected="false">Хосты</button>
+                    </a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a href="/scan">
+                        <button class="nav-link w-100 rounded-0" id="pills-scan-tab" type="button"
+                            aria-selected="false">Сканирование</button>
+                    </a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a href="/config">
+                        <button class="nav-link w-100 rounded-0" id="pills-config-tab" type="button"
+                            aria-selected="false">Конфигурация</button>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-10 tab-content pt-4">
+            {% block page %}{% endblock %}
+        </div>
+    </div>
+</div>
+{% endblock %}

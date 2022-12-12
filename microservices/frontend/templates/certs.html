@@ -1,0 +1,63 @@
+{% extends 'home.html' %}
+
+{% block page %}
+<div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+    <table class="table table-hover text-center">
+        <thead class="table-light">
+            <th>Хеш</th>
+            <th>TLS</th>
+            <th>Длина ключа</th>
+            <th>Шифр</th>
+            <th>С/п</th>
+            <th>УЦ</th>
+            <th>Выдан с</th>
+            <th>Выдан до</th>
+            <th>Длительность</th>
+        </thead>
+        <tbody>
+            {% for cert in certs %}
+            <tr>
+                <td class="{{ 'bg-danger' if 'fingerprint' in cert['invalid'] }}">
+                    <button type="button" class="btn btn-light w-100" data-bs-container="body" data-bs-toggle="popover"
+                        data-bs-placement="top" data-bs-trigger="hover" data-bs-content="{{ cert["fingerprint"] }}">
+                        {{ cert["fingerprint"][:10] }}
+                    </button>
+                </td>
+                <td class="{{ 'bg-danger' if 'tls_version' in cert['invalid'] }}">
+                    {{ cert["tls_version"].replace("TLSv", '').replace('_', '.') }}
+                </td>
+                <td class="{{ 'bg-danger' if 'pubkey_bit_size' in cert['invalid'] }}">
+                    {{ cert["pubkey_bit_size"] }}
+                </td>
+                <td class="{{ 'bg-danger' if 'cipher' in cert['invalid'] }}">
+                    <button type="button" class="btn btn-light w-100" data-bs-container="body" data-bs-toggle="popover"
+                        data-bs-placement="top" data-bs-trigger="hover" data-bs-content="{{ cert["cipher"] }}">
+                        {{ cert["cipher"][:10] }}
+                    </button>
+                </td>
+                <td class="{{ 'bg-danger' if 'self_signed' in cert['invalid'] }}">
+                    {{ '✅' if cert["self_signed"] else '❌' }}
+                </td>
+                <td class="{{ 'bg-danger' if 'issuer' in cert['invalid'] }}">
+                    <button type="button" class="btn btn-light w-100" data-bs-container="body" data-bs-toggle="popover"
+                        data-bs-placement="top" data-bs-trigger="hover" data-bs-content="{{ cert["issuer"] }}">
+                        {{ cert["issuer"][:10] }}
+                    </button>
+                </td>
+                <td class="{{ 'bg-danger' if 'v_start' in cert['invalid'] }}">
+                    {{ fromtimestamp(cert['v_start']).strftime('%d.%m.%Y') }}
+                </td>
+                <td class="{{ 'bg-danger' if 'v_end' in cert['invalid'] }}">
+                    {{ fromtimestamp(cert['v_end']).strftime('%d.%m.%Y') }}
+                </td>
+
+                <td class="{{ 'bg-danger' if 'v_length' in cert['invalid'] }}">
+                    {{ cert['v_length'] }}
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,44 @@
+{
+  "creds": [
+    {
+      "CENSYS_API_ID": "05b17656-84ce-4ee6-950e-03bdbb1eb577",
+      "CENSYS_API_SECRET": "YNCQdew8t12UoMv6NrBy4aa03cgc5ggP"
+    },
+    {
+      "CENSYS_API_ID": "59cbe782-4a1a-4bb6-8320-263932b1eee3",
+      "CENSYS_API_SECRET": "2NtQ5XySNJgWhC4lEkcZNQzAmyCmiSOK"
+    },
+    {
+      "CENSYS_API_ID": "d4c97ae3-773a-4409-b1b7-ab2658c9b170",
+      "CENSYS_API_SECRET": "oNoy7HWqXhrDMeIlutk3DQfOPRWtH5Ss"
+    },
+    {
+      "CENSYS_API_ID": "c58460bf-ed78-44ef-a494-a37e6e0fa3d4",
+      "CENSYS_API_SECRET": "kuvT3cX9DTCW8kCtJX4YyiQjsuYV9m9B"
+    },
+    {
+      "CENSYS_API_ID": "322f6c16-5110-4058-82e9-7262e1332628",
+      "CENSYS_API_SECRET": "eYodYL0dauY0qNN4mwXPgObQyIoxHD9m"
+    },
+    {
+      "CENSYS_API_ID": "ba5d01f9-ddf3-49b6-b01e-c0cffa839211",
+      "CENSYS_API_SECRET": "aaBIK86c5P6Ahddx3SQoENbhuZkV8DTG"
+    },
+    {
+      "CENSYS_API_ID": "05777fa3-157e-402d-8a5f-f592d84de54f",
+      "CENSYS_API_SECRET": "p3PJfkIsgyy54SdFjr6AESRSRkvALlxD"
+    },
+    {
+      "CENSYS_API_ID": "2e4c459e-fff0-4dfc-82ad-829832082021",
+      "CENSYS_API_SECRET": "Fp0iggAMHeFfZilTd6LVjl54w8H60OjW"
+    },
+    {
+      "CENSYS_API_ID": "36c1b619-93c0-4e4e-b7cf-eeee82706b6d",
+      "CENSYS_API_SECRET": "ZDPElLi1OYHhn3mvWTQwp7TFYacu0RF1"
+    },
+    {
+      "CENSYS_API_ID": "8075ec67-dda5-4511-a0e3-d24cf894153c",
+      "CENSYS_API_SECRET": "NkAsofMulvlgKRpAlCIepwqGNWxwJezd"
+    }
+  ]
+}

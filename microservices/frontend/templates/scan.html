@@ -1,0 +1,28 @@
+{% extends 'home.html' %}
+{% block page %}
+<div class="input-group mb-3">
+    <input id="search_value" type="text" class="form-control" placeholder="IP" aria-label="IP"
+        aria-describedby="button-addon2">
+    <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="search()">Поиск</button>
+</div>
+<div id="result">
+
+</div>
+<script>
+    var elems = document.querySelectorAll(".nav-link.active");
+    [].forEach.call(elems, function (el) {
+        el.classList.remove("active");
+    });
+
+    document.getElementById("pills-scan-tab").classList.add('active');
+
+    async function search() {
+        url = "http://localhost:5000/?ip=" + document.getElementById('search_value').value;
+        console.log(url);
+        await fetch(url).then(resp => {
+            console.log(resp);
+            document.getElementById('result').innerText = resp.json();
+        })
+    }
+</script>
+{% endblock %}

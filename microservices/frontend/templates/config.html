@@ -1,0 +1,75 @@
+{% extends 'home.html' %}
+{% block page %}
+<div>
+    <div class="form-check form-switch">
+        <input type="checkbox" value="true" id="switchCheckExpired">
+        <label class="form-check-label" for="switchCheckExpired">Проверять истек ли срок действия сертификата</label>
+    </div>
+    <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" value="true" id="switchWarnSelfSigned">
+        <label class="form-check-label" for="switchWarnSelfSigned">Проверять является ли сертификат
+            самоподписанным</label>
+    </div>
+    <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" value="true" id="switchWarnWeakCipher">
+        <label class="form-check-label" for="switchWarnWeakCipher">Проверять на ненадёжные алгоритмы шифрования</label>
+    </div>
+    <button class="btn btn-primary" type="button" id="button-addon2" onclick="save()">Сохранить</button>
+</div>
+<script src="{{ url_for('static', filename='js/jquery-3.6.1.min.js') }}"></script>
+<script>
+    var elems = document.querySelectorAll(".nav-link.active");
+    [].forEach.call(elems, function (el) {
+        el.classList.remove("active");
+    });
+
+    document.getElementById("pills-config-tab").classList.add('active');
+
+    var filters = {
+        "check_expired": true,
+        "expire_in": 2629743,
+        "issuers": [],
+        "key_length": 1024,
+        "tls_disallowed": [],
+        "validity_period": 31556926,
+        "warn_self_signed": true,
+        "warn_weak_ciphers": true
+    };
+
+    async function load_filters() {
+        var resp = await fetch('http://localhost:5001/filters');
+        const new_filters = await resp.json();
+        filters = new_filters;
+        console.log(filters);
+    }
+    load_filters();
+
+    $('#switchCheckExpired').on('change', function (e, data) {
+        console.log($('#switchCheckExpired').val());
+        filters.check_expired = !filters.check_expired
+    });
+
+    $('#switchWarnSelfSigned').on('change', function (e, data) {
+        console.log($('#switchWarnSelfSigned').val());
+        filters.warn_self_signed = !filters.warn_self_signed
+    });
+
+    $('#switchWarnWeakCipher').on('change', function (e, data) {
+        filters.warn_weak_ciphers = !filters.warn_weak_ciphers
+    });
+
+    async function save() {
+        url = "http://localhost:5001/";
+        fetch(url, {
+            method: "post",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(filters)
+        }).then(resp => {
+            console.log(resp);
+        })
+    }
+</script>
+{% endblock %}

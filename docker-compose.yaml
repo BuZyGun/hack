@@ -1,0 +1,38 @@
+version: '3.8'
+services:
+  engine:
+    build: microservices/engine
+    ports:
+      - "5000:5000"
+  frontend:
+    build: microservices/frontend
+    ports:
+      - "80:80" 
+  validator:
+    build: microservices/validator
+    ports:
+      - "5001:5001"  
+  storage:
+    build: microservices/storage
+    ports:
+      - "5002:5002"  
+    environment:
+      - DB_HOST=db
+      - DB_NAME=${POSTGRES_DB:-db}
+      - DB_USER=${POSTGRES_USER:-postgres}
+      - DB_PASSWORD=${POSTGRES_PASSWORD:-postgres}
+  db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB:-db}
+      - POSTGRES_USER=${POSTGRES_USER:-postgres}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgres}
+    ports:
+      - '5432:5432'
+    volumes:
+      - db:/var/lib/postgresql/data
+      - ./db/init.sql:/docker-entrypoint-initdb.d/create_tables.sql
+volumes:
+  db:
+    driver: local
